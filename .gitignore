@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+.virtual_documents/
+*.ipynb
+
+# Marimo
+__marimo__/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Learning-specific
+job_prep/
+general/
