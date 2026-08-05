@@ -21,10 +21,12 @@ def dfs(graph, start_node, visited):
 def dfsi(graph, start_node):
     visited = {start_node}
     nodes = deque([start_node])
-    for neighbour in graph[nodes.pop()]:
-        if not neighbour in visited:
-            visited.add(neighbour)
-            nodes.append(neighbour)
+    while nodes:
+        node = nodes.pop()
+        for neighbour in graph[node]:
+            if not neighbour in visited:
+                visited.add(neighbour)
+                nodes.append(neighbour)
 
     return visited
 
@@ -50,7 +52,7 @@ class Solution:
         #            sus.add(y)
         #            check.append(y)
 
-        sus = dfsi(rels, k) #, set())
+        sus = dfs(rels, k, set())
         # remove sus nodes from master set
         remaining = [x for x in nodes if not x in sus]
 
