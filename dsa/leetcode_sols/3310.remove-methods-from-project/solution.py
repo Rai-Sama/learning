@@ -1,16 +1,30 @@
 # Anshuman -- arrays -- graphs
 
+#import sys
+from collections import deque
 from typing import *
 
 from leetgo_py import *
+
+#sys.setrecursionlimit(200000)
 
 # @lc code=begin
 
 def dfs(graph, start_node, visited):
     visited.add(start_node)
-    for neigbour in graph:
-        if not neigbour in visited:
+    for neighbour in graph[start_node]:
+        if not neighbour in visited:
             dfs(graph, neighbour, visited)
+
+    return visited
+
+def dfsi(graph, start_node):
+    visited = {start_node}
+    nodes = deque([start_node])
+    for neighbour in graph[nodes.pop()]:
+        if not neighbour in visited:
+            visited.add(neighbour)
+            nodes.append(neighbour)
 
     return visited
 
@@ -36,7 +50,7 @@ class Solution:
         #            sus.add(y)
         #            check.append(y)
 
-        sus = dfs(rels, k, set())
+        sus = dfsi(rels, k) #, set())
         # remove sus nodes from master set
         remaining = [x for x in nodes if not x in sus]
 
