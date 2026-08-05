@@ -22,7 +22,7 @@ code:
   python3:
     # Changed to "." so files generate directly in leetcode_sols/ without a subfolder
     out_dir: "."
-    executable: python3
+    executable: "/home/raisama/miniconda3/envs/leetcode/bin/python"
     blocks:   
       - name: header
         template: |
