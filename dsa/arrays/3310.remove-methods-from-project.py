@@ -18,9 +18,7 @@ class Solution:
         # If nothing remained just return the empty List
         nodes = set()
         sus = {k}
-        unsus = set()
         rels = {}
-        master = {}
         good_nodes = {}
         for i in invocations:
             nodes.update([i[0], i[1]])  # Add new nodes to master set of nodes
@@ -35,8 +33,13 @@ class Solution:
                         rels[i[1]]
                     )  # All edges outgoing from sus node become sus
 
+        print("Master list of nodes: ", nodes)
+        print("Sus nodes found: ", sus)
+
+
         # remove sus nodes from master set
         remaining = nodes - sus
+        print("Remaining unsus nodes: ", remaining)
 
         for x in remaining:
             if x in rels:
@@ -46,8 +49,12 @@ class Solution:
             if len(good_nodes) < len(
                 sus
             ):  # Non-suspicious link goes to a sus one - removal impossible scenario
+                print("Bad nodes found: ", sus - good_nodes)
                 sol = list(nodes)
+                print("Returning: ", sol)
+                print("Should be the list version of: ", nodes)
                 return sol
+        print("Remaining nodes: ", remaining)
         sol = list(remaining)
         return sol
 
