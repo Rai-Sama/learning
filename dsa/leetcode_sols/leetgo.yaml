@@ -1,0 +1,55 @@
+# Leetgo configuration file, see more at https://github.com/j178/leetgo
+
+author: Anshuman Rai
+language: en
+code:
+  lang: python3
+  # Matching my existing convention (e.g., 1.two-sum) by removing the zero-padding
+  filename_template: '{{ .Id }}{{ if .SlugIsMeaningful }}.{{ .Slug }}{{ end }}'
+  # Set to false so the problem description is embedded in the Python file
+  # rather than creating a separate markdown file
+  separate_description_file: true 
+  modifiers:
+    - name: removeUselessComments
+  
+  go:
+    out_dir: go
+    modifiers:
+      - name: removeUselessComments
+      - name: changeReceiverName
+      - name: addNamedReturn
+      - name: addMod
+  python3:
+    # Changed to "." so files generate directly in leetcode_sols/ without a subfolder
+    out_dir: "."
+    executable: python3
+    blocks:   
+      - name: header
+        template: |
+          # Anshuman -- TODO_PATH_1
+  cpp:
+    out_dir: cpp
+    cxx: g++
+    cxxflags: -O2 -std=c++17
+  rust:
+    out_dir: rust
+  java:
+    out_dir: java
+
+leetcode:
+  site: https://leetcode.com
+  credentials:
+    from:
+      - browser
+    browsers: []
+
+contest:
+  out_dir: contest
+  filename_template: '{{ .ContestShortSlug }}/{{ .Id }}{{ if .SlugIsMeaningful }}.{{ .Slug }}{{ end }}'
+  open_in_browser: true
+
+editor:
+  # Configured to automatically launch Neovim
+  use: custom
+  command: "nvim"
+  args:  "{{.DescriptionFile}} {{.CodeFile}}"
