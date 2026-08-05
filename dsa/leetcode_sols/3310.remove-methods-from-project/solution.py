@@ -1,10 +1,19 @@
-# Anshuman -- arrays
+# Anshuman -- arrays -- graphs
 
 from typing import *
 
 from leetgo_py import *
 
 # @lc code=begin
+
+def dfs(graph, start_node, visited):
+    visited.add(start_node)
+    for neigbour in graph:
+        if not neigbour in visited:
+            dfs(graph, neighbour, visited)
+
+    return visited
+
 
 class Solution:
     def remainingMethods(self, n: int, k: int, invocations: List[List[int]]) -> List[int]:
@@ -19,14 +28,15 @@ class Solution:
         for i in invocations:
             rels[i[0]].append(i[1])
 
-        check = [x for x in sus]
-        while check:
-            x = check.pop()
-            for y in rels[x]:
-                if not y in sus:
-                    sus.add(y)
-                    check.append(y)
+        #check = [x for x in sus]
+        #while check:
+        #    x = check.pop()
+        #    for y in rels[x]:
+        #        if not y in sus:
+        #            sus.add(y)
+        #            check.append(y)
 
+        sus = dfs(rels, k, set())
         # remove sus nodes from master set
         remaining = [x for x in nodes if not x in sus]
 
@@ -34,6 +44,7 @@ class Solution:
             for y in rels[x]:
                 if y in sus:
                     return nodes
+
         return remaining
 
 # @lc code=end
