@@ -161,3 +161,7 @@ artifacts/
 # Learning-specific
 job_prep/
 general/
+
+# Leetgo-specific (this is the CLI tool for leetcode)
+.leetgo/
+__pycache__/
